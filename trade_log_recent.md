@@ -1,19 +1,19 @@
-# 2026-09-10
+# 2026-09-11
 
 ## Loss-limit check
-Clean. Daily and weekly P&L both 0% (no realized trades this week, no open positions, cash equals the $1,000 starting capital). Entries not halted.
+Clean. Daily and weekly P&L both 0% (no realized trades today or this week, no open positions at cycle start, cash equals the $1,000 starting capital). Entries not halted.
 
 ## Positions
-No open positions — nothing to check for stop-loss or take-profit this cycle.
+No open positions at cycle start — nothing to check for stop-loss or take-profit this cycle.
 
 ## New-entry candidates considered
-Today's Phase A run flagged FNV as a low-conviction long (VRT was an avoid, not reprocessed).
+Today's Phase A run flagged CNQ as a high-conviction long (FCX, ADBE, KVUE were avoids, not reprocessed).
 
-- **FNV** — approved, sized $60.00 (6% of account, low-conviction tier). Price staleness check showed a modest -1.93% gap vs. Wednesday's close ($265.43 → $260.80 ask), consistent with the thesis's own caveat that gold has already pulled back from its January highs — not a reason to drop. No wash-sale conflict in either linked account.
+- **CNQ** — approved, sized $200.00 (20% of account, high-conviction tier). Price staleness check showed a modest -2.32% gap vs. Thursday's official close ($50.80 → $49.62 ask), ordinary noise with no new adverse news — Q2 earnings beat and record production are already-disclosed facts unaffected by a small overnight move. No wash-sale conflict in either linked account (446135105, 425699840).
 
-Passed `review_equity_order` with no blocking alerts. Cash remaining after: $940.00 (94% of account, well above the 10% minimum buffer).
+Passed `review_equity_order` with no blocking alerts. Cash remaining after: $800.00 (80% of account, well above the 10% minimum buffer).
 
 ## Orders placed
-None — `execution.mode` is `dry_run`, so FNV was logged as would-execute only; no real order was placed.
+**CNQ — buy $200.00.** `execution.mode` read fresh from `risk_rules.json` this cycle as **`live`** (changed from `dry_run`), and the dry-run cycle count (11 distinct days, ≥ the 10-cycle threshold) plus a clean `review_equity_order` (no blocking alerts) meant all three live-order gate conditions were met. This is the first live order placed by this pipeline — all prior cycles were dry-run simulations only.
 
-Dry-run cycle count is now **11** distinct days (2026-08-27, 2026-08-28, 2026-08-31, 2026-09-01, 2026-09-02, 2026-09-03, 2026-09-04, 2026-09-07, 2026-09-08, 2026-09-09, 2026-09-10) — above the `dry_run_min_cycles_before_live` threshold (10), but `execution.mode` is still `dry_run`, so the live-order gate remains closed until a human manually flips it to `live`.
+Order filled immediately: **4.029828 shares at an average price of $49.6299** (order_id `6aa40414-190e-4b3c-bd73-a8672df4bb79`), confirmed via `get_equity_orders`. The account now holds 1 of 4 max concurrent positions.

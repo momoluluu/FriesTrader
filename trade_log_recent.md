@@ -1,19 +1,20 @@
-# 2026-09-11
+# 2026-09-14
 
 ## Loss-limit check
-Clean. Daily and weekly P&L both 0% (no realized trades today or this week, no open positions at cycle start, cash equals the $1,000 starting capital). Entries not halted.
+- Clean: no realized trades today or this week; account total value $1003.81 vs. $1,000.00 starting capital is a +0.38% unrealized gain (all from the held CNQ position), not a loss. Entries **not** halted.
 
-## Positions
-No open positions at cycle start — nothing to check for stop-loss or take-profit this cycle.
+## Held positions
 
-## New-entry candidates considered
-Today's Phase A run flagged CNQ as a high-conviction long (FCX, ADBE, KVUE were avoids, not reprocessed).
+**CNQ** — 4.029828 shares @ avg cost $49.63, current price $50.575 (+1.90%)
+- Stop-loss: not triggered (position is at a gain, so no stop-loss % is computed this cycle — only applies on a drawdown).
+- Take-profit: not triggered — gain of 1.90% is below all three tiers (15% / 30% / 50%). Holding, monitoring.
 
-- **CNQ** — approved, sized $200.00 (20% of account, high-conviction tier). Price staleness check showed a modest -2.32% gap vs. Thursday's official close ($50.80 → $49.62 ask), ordinary noise with no new adverse news — Q2 earnings beat and record production are already-disclosed facts unaffected by a small overnight move. No wash-sale conflict in either linked account (446135105, 425699840).
+## Candidates considered
 
-Passed `review_equity_order` with no blocking alerts. Cash remaining after: $800.00 (80% of account, well above the 10% minimum buffer).
+**CNQ (top-up, medium conviction)** — rejected, no order attempted. Weekend news search (Monday run) turned up nothing that contradicts the thesis, and the Friday-close-to-Monday-open price gap (+1.08%) was negligible. But the position is already worth $203.81, well above the $120.46 target size for a medium-conviction tier (it was originally opened at the high-conviction 0.20 tier last Friday) — headroom is -$83.35, so no top-up.
 
 ## Orders placed
-**CNQ — buy $200.00.** `execution.mode` read fresh from `risk_rules.json` this cycle as **`live`** (changed from `dry_run`), and the dry-run cycle count (11 distinct days, ≥ the 10-cycle threshold) plus a clean `review_equity_order` (no blocking alerts) meant all three live-order gate conditions were met. This is the first live order placed by this pipeline — all prior cycles were dry-run simulations only.
+None this cycle.
 
-Order filled immediately: **4.029828 shares at an average price of $49.6299** (order_id `6aa40414-190e-4b3c-bd73-a8672df4bb79`), confirmed via `get_equity_orders`. The account now holds 1 of 4 max concurrent positions.
+---
+*Source of truth is `trade_log.jsonl` — if this summary ever disagrees with it, trust the JSONL.*

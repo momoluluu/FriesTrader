@@ -1,29 +1,25 @@
-# 2026-09-16
+# 2026-09-17
 
 ## Loss-limit check
-- Clean: no realized trades today or this week; account total value $1,006.62 vs. $1,000.00 starting capital is a +0.66% unrealized gain (from the held CNQ and ASML positions), not a loss. Entries **not** halted.
+No realized trades in either linked account this month. Account is at a +0.40% unrealized gain vs. starting capital ($1004.05 vs $1000.00) — not a loss. Daily/weekly loss limits not breached; new entries and top-ups not halted.
 
-## Held positions
+## Held positions — stop-loss / take-profit
+- **CNQ**: +1.11% gain (avg cost $49.63 → $50.18). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **ASML**: +2.28% gain (avg cost $1591.03 → $1627.34). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **TMO**: +0.77% gain (avg cost $646.99 → $652.00). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
 
-**CNQ** — 4.029828 shares @ avg cost $49.63, current price $51.05 (+2.86%)
-- Stop-loss: not triggered (position is at a gain, so no stop-loss % is computed this cycle — only applies on a drawdown).
-- Take-profit: not triggered — gain of 2.86% is below all three tiers (15% / 30% / 50%). Holding, monitoring.
+## New-entry / top-up candidates considered
+Merged priority order: CNQ (medium) > TMO (medium) > ASML (low) > LITE (low).
 
-**ASML** — 0.037925 shares @ avg cost $1,591.03, current price $1,614.74 (+1.49%)
-- Stop-loss: not triggered (position is at a gain).
-- Take-profit: not triggered — gain of 1.49% is below all three tiers. Holding, monitoring.
+- **CNQ (top-up)** — rejected: already above target size for its conviction tier (target $120.49 vs. current position value $202.22, headroom -$81.73).
+- **TMO (top-up)** — **approved**, $59.62. Today's thesis upgraded TMO to medium conviction, opening real headroom (target $120.49 vs. current value $60.87) for the first time.
+- **ASML (top-up)** — rejected: already above target size for its conviction tier (target $60.24 vs. current value $61.72, headroom -$1.47).
+- **LITE (new entry)** — **approved**, $60.24 (low-conviction sizing), filling the account's one remaining slot.
 
-## Candidates considered
-
-**ASML (top-up, low conviction)** — rejected, no order attempted. Price gap from Tuesday's close (+1.46%) was negligible, no re-check needed. Position is already worth $61.24, above the $60.40 target size for a low-conviction tier — headroom is -$0.84, so no top-up.
-
-**CNQ (top-up, low conviction)** — rejected, no order attempted. Price gap from Tuesday's close (-0.97%) was negligible. Position is already worth $205.72, well above the $60.40 target size for a low-conviction tier (originally bought at the high-conviction tier) — headroom is -$145.32, so no top-up.
-
-**TMO (new entry, low conviction)** — approved and sized at $60.40 (0.06 × account value, low-conviction tier). Passed position-size, concurrency (3 of 4 slots after), and cash-buffer checks; wash-sale guard and price-staleness re-check both clean.
+Wash-sale guard checked both linked accounts for all four symbols — no closing loss sales found for any, guard did not block.
 
 ## Orders placed
+- **TMO** — buy top-up, $59.62 → filled 0.091625 sh @ avg $650.6906 (order 6aabed3d…)
+- **LITE** — buy new entry, $60.24 → filled 0.064768 sh @ avg $930.0799 (order 6aabed3e…)
 
-- **TMO — buy $60.40** (live). Filled immediately: 0.093356 shares @ avg price $646.9799 (order_id `6aaa9b88-953b-4e93-949d-fa7373a3af67`).
-
----
-*Source of truth is `trade_log.jsonl` — if this summary ever disagrees with it, trust the JSONL.*
+Account now holds **4 of 4 max_concurrent_positions** (CNQ, ASML, TMO, LITE) — fully allocated, no open slots remain until a position is closed.

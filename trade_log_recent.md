@@ -1,31 +1,31 @@
-# 2026-09-29
+# 2026-09-30
 
 ## Loss-limit check
-No realized trades today or this week in account 446135105. Account is at a +1.15% unrealized gain vs starting capital ($1011.51 vs $1000.00) — not a loss. Entries and top-ups not halted.
+1 realized closing trade this week in account 446135105 (yesterday's CNQ stop-loss sell, -$11.14). Account total_value is $1016.13 vs starting capital $1000.00 — a +1.61% combined gain (the realized CNQ loss is already reflected in cash). Not a loss. Entries and top-ups not halted.
 
 ## Held positions — stop-loss / take-profit
-Tuesday run — no weekend-gap check applicable.
+Wednesday run — no weekend-gap check applicable.
 
-- **CNQ**: **-5.64% drawdown** (avg cost $49.63 → $46.83). Volatility-scaled stop_pct computed at **5.00%** (20-bar stdev 1.65% × 2.5 multiplier = 4.11%, clamped up to the 5% floor) — drawdown **exceeded** the stop. **Triggered — full position sold** (4.029828 shares, filled at avg $46.8652). Not a wash sale: the position came from a single 2026-09-11 purchase fully closed out by this sale, and no linked account holds or bought CNQ.
-- **ASML**: +9.58% gain (avg cost $1645.09 → $1802.6444). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
-- **TMO**: +4.39% gain (avg cost $650.41 → $678.96). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
-- **LITE**: +1.31% gain (avg cost $938.25 → $950.5101). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **ASML**: +10.94% gain (avg cost $1645.09 → $1825.12). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **TMO**: +3.89% gain (avg cost $650.41 → $675.74). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **LITE**: +3.39% gain (avg cost $938.25 → $970.09). Gain, so stop-loss not computed. Below all take-profit tiers — holding.
+- **CVNA**: small **-1.11% drawdown** (avg cost $63.12 → $62.42). Volatility-scaled stop_pct computed at **7.75%** (20-bar stdev 3.10% × 2.5 multiplier, no clamping) — drawdown well under the stop, not triggered. At a loss, so no take-profit tier eligible.
+
+No sells this cycle.
 
 ## New-entry / top-up candidates considered
-CNQ's stop-loss fully exited that position this cycle, freeing a slot: open_slots = 4 max_concurrent_positions − 3 remaining live positions (ASML, TMO, LITE) = **1**. This let the two new-entry candidates go through normal staleness/risk checks instead of being short-circuited (BA was direction:avoid, already resolved in Phase A). Fresh quotes vs yesterday's close showed only minor moves across the board — nothing material enough to invalidate any thesis.
+No position was resolved via stop-loss/take-profit this cycle, so open_slots = 4 max_concurrent_positions − 4 live positions (ASML, TMO, LITE, CVNA) = **0**. The one new-entry candidate this cycle, **TJX** (medium conviction), was skipped per Step 4's capacity short-circuit without a staleness re-check — a scarcity rejection, not a quality one. (URI was already rejected in Phase A for low volume; BNS/ITW/SLB were no_signal.)
 
-Merged priority order: LITE (high, 0.1510) > TMO (high, 0.0067) > ASML (medium) > CVNA (low, 0.3786) > AEM (low, 0.2789). CNQ was dropped from the top-up group before ranking — its own stop-loss fired this cycle, so it's not eligible for a same-cycle top-up.
+Merged priority order for the held-group top-ups: LITE (medium, 0.10) > TMO (medium, 0.0049) > CVNA (low, 0.35) > ASML (low, 0.08).
 
-- **LITE (top-up)** — rejected: already at/above target size for its conviction tier (target $202.30 vs. current value $206.66, headroom -$4.35).
-- **TMO (top-up)** — rejected: already at/above target size for its conviction tier (target $202.30 vs. current value $208.73, headroom -$6.42).
-- **ASML (top-up)** — rejected: already at/above target size for its conviction tier (target $121.38 vs. current value $126.13, headroom -$4.75).
-- **CVNA (new entry)** — **approved and placed**: $60.69 (6% of $1011.51, low conviction). Reviewed via `review_equity_order` with no blocking alerts; live-order gate open (mode=live, dry-run cycle count 11 ≥ 10) — order placed and filled immediately.
-- **AEM (new entry)** — rejected: no open slots left (concurrent_positions_after would be 5, exceeding the max of 4) — scarcity, not quality; it also lost the low-conviction tiebreak to CVNA (0.2789 vs. 0.3786).
+- **LITE (top-up)** — rejected: already at/above target size for its conviction tier (target $121.94 vs. current value $210.91, headroom -$88.98). Today's thesis downgraded LITE from high back to medium conviction.
+- **TMO (top-up)** — rejected: already at/above target size for its conviction tier (target $121.94 vs. current value $207.74, headroom -$85.80).
+- **CVNA (top-up)** — rejected: positive headroom ($0.95) but below the $6.10 minimum top-up threshold (10% of target $60.97) — no order attempted.
+- **ASML (top-up)** — rejected: already at/above target size for its conviction tier (target $60.97 vs. current value $127.71, headroom -$66.74). Today's thesis downgraded ASML from medium to low conviction.
 
-Wash-sale guard (buys): checked both linked accounts for ASML/TMO/LITE/AEM/CVNA — account 446135105 had zero trades this month; account 425699840 had many sells but none in any of these five symbols — guard did not block. Sell re-entry lock: no prior stop_loss/take_profit/exit_existing sell had ever been logged for this account before today, so it didn't apply to anything entering this cycle.
+Wash-sale guard (buys): checked both linked accounts for ASML/TMO/LITE/CVNA — account 446135105 had only the (unrelated) CNQ sell; account 425699840 had many sells this month but none in these four symbols — guard did not block anything. Sell re-entry lock: the only executed sell ever logged for this account is yesterday's CNQ stop-loss, a different symbol — no lock applies to today's candidates.
 
 ## Orders placed
-- **CNQ — sell (stop-loss), full position** — 4.029828 shares @ avg fill $46.8652 (order_id `6abbbf8e-0293-4dfb-9a61-a380d8f53e41`, filled). Proceeds ≈ $188.86.
-- **CVNA — buy (new entry), $60.69** — 0.961440 shares @ avg fill $63.124 (order_id `6abbbf90-b972-4897-93e6-5120966dd2ca`, filled).
+None this cycle — no candidate passed Step 5.
 
-Account now holds **4 of 4 max_concurrent_positions**: ASML, TMO, LITE, CVNA (CNQ fully exited).
+Account remains at **4 of 4 max_concurrent_positions**: ASML, TMO, LITE, CVNA. Cash unchanged at $409.12.
